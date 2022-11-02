@@ -1,10 +1,11 @@
+/// Cell with coords
 #[derive(Debug, PartialEq, Eq, Hash)]
-pub struct Cell {
+pub struct FieldCell {
     pub x: i64,
     pub y: i64,
 }
 
-impl Cell {
+impl FieldCell {
     pub fn get_top(&self) -> Self {
         Self {
             x: self.x,
@@ -38,6 +39,7 @@ impl Cell {
     }
 }
 
+/// Convert number to digit vec
 fn to_digits(v: i64) -> Vec<i64> {
     let mut v = if v >= 0 { v } else { -v };
 

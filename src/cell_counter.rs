@@ -1,16 +1,17 @@
+#![allow(dead_code)]
 use std::collections::{HashSet, VecDeque};
 
-use crate::cell::Cell;
+use crate::cell::FieldCell;
 
 #[derive(Debug)]
 pub struct CellCounter {
+    pub visited_cells: HashSet<FieldCell>,
     max_coord_sum: i64,
-    pub visited_cells: HashSet<Cell>,
-    new_cells: VecDeque<Cell>,
+    new_cells: VecDeque<FieldCell>,
 }
 
 impl CellCounter {
-    pub fn new(max_coord_sum: i64, init_cell: Cell) -> Self {
+    pub fn new(max_coord_sum: i64, init_cell: FieldCell) -> Self {
         Self {
             max_coord_sum,
             visited_cells: HashSet::new(),
@@ -37,7 +38,7 @@ impl CellCounter {
         Some(self.visited_cells.len() as u64)
     }
 
-    fn is_sum_fit(&self, cell: &Cell) -> bool {
+    fn is_sum_fit(&self, cell: &FieldCell) -> bool {
         cell.coords_digits_sum() <= self.max_coord_sum
     }
 }
